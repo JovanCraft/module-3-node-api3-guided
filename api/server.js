@@ -11,17 +11,31 @@ function customMorgan(req, res, next){
   next();
 }
 
+function shortCircuit(req, res, next){
+  res.json(`the request was short curcuited!!!!`);
+
+}
+
+function addFriend(req, res, next){
+  req.friend = 'Lady Gaga';
+  next();
+}
+
 server.use(express.json());
 
 server.use(morgan('dev'));
 
 server.use(customMorgan);//does not need to be invoked because it ITSELF is a middleware
 
+// server.use(shortCircuit);//short circuits the request so that you never see what the server was sending back to you. If it is moved above the morgan you won't even see anything printed out into the server console.
+
+server.use(addFriend);//adds a friend to the req object! can be seen once the server throws back the information to you.
+
 server.use('/api/hubs', hubsRouter);
 
 server.get('/', (req, res) => {
   res.send(`
-    <h2>Hubs API</h2>
+    <h2>Hubs ${req.friend} API</h2>
     <p>Welcome to the Hubs API</p>
   `);
 });
