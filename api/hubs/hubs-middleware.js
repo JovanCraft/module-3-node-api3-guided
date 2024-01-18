@@ -7,14 +7,31 @@ async function checkHubId(req, res, next){
             req.hub = hub;
             next();
         } else {
-            next({ status: 404, message: `Hub ${req.params.id} not found`})
+            next({ status: 404, message: `Hub ${req.params.id} not found`});
         }
     } catch(error) {
         next(error);
     }
 }
 
+function checkNewHub(req, res, next) {
+    const { name } = req.body;
+    if(
+        name !== undefined &&
+        typeof name === 'string' &&
+        name.length &&
+        name.trim().length
+    ){
+        next();
+    } else {
+        res.status(422).json({
+            message: `hubs need a name. You ain't got 1 letter?! DANG!!`
+        });
+    }
+}
+
 
 module.exports = {
     checkHubId,
+    checkNewHub,
 };
