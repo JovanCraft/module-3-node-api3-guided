@@ -6,9 +6,16 @@ const hubsRouter = require('./hubs/hubs-router.js');
 
 const server = express();
 
+function customMorgan(req, res, next){
+  console.log(`you made a ${req.method} request!!`);
+  next();
+}
+
 server.use(express.json());
 
-server.use(morgan('dev'))
+server.use(morgan('dev'));
+
+server.use(customMorgan);//does not need to be invoked because it ITSELF is a middleware
 
 server.use('/api/hubs', hubsRouter);
 
