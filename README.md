@@ -10,8 +10,8 @@ In this project we will learn how to create a very simple Web API using `Node.js
 
 ## Project Setup
 
-- [ ] clone the repository to your local.
-- [ ] **CD into the folder** where you cloned the repo.
-- [ ] type `npm i` to download dependencies.
+- [x] clone the repository to your local.
+- [x] **CD into the folder** where you cloned the repo.
+- [x] type `npm i` to download dependencies.
 
 Please follow along as the instructor creates and adds `middleware` to the API step by step.
