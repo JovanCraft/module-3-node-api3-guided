@@ -51,3 +51,9 @@ function findHubMessages(hubId) {
     .select('m.id', 'm.text', 'm.sender', 'h.id as hubId', 'h.name as hub')
     .where({ hub_id: hubId });
 }
+
+
+
+
+
+
